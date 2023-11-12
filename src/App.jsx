@@ -21,7 +21,6 @@ const router = createBrowserRouter([
     {
       path: '/2',
       element: <Content2 />
-      
     }]
   }
 ]);

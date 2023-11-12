@@ -41,7 +41,6 @@ const Sidebar = (props) => {
   const navigate = useNavigate();
 
   const onClick = (e) =>{
-    console.log(e);
     if(e.key === '1'){
       setSelectedMenuItem('1');
       navigate('/');
@@ -57,8 +56,10 @@ const Sidebar = (props) => {
           breakpoint="lg"
           collapsedWidth="0"
           style={{
+              overflow: 'auto',
               height:"100vh", 
-              position: "fixed"
+              position: "fixed",
+              
           }}  
       >
       <Flex justify="center">

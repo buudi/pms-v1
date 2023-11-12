@@ -1,23 +1,27 @@
 import React from 'react';
-import { Layout, Button } from 'antd';
+import { Layout, Button, Flex } from 'antd';
 import { Link } from "react-router-dom"
 
 const Content = () => {
     return( 
-        <Layout>
-            <Layout.Header
-            
-                style={{
-                    height: '5vh',
-                    padding: 0,
-                    background: "white"
-                }}
-            />
+        
+        <Layout style={{marginRight: 200}} >
+          <Layout.Header style={{ padding: 0, background: 'white' }} />
+          <Layout.Content style={{ margin: '24px 16px 0' }}>
+            <div style={{ padding: 24, minHeight: 360, background: 'white' }}>content</div>
+          </Layout.Content>
+          <Layout.Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Layout.Footer>
+        </Layout>
+  
+    )
+}
 
-            <Layout.Content
+export default Content;
+{/* <Layout.Content
                 style={{
                     margin: '24px 16px 0',
                     overflow: 'initial',
+                    background: "white  "
                 }}
             >
                 <div
@@ -45,11 +49,4 @@ const Content = () => {
             }
           </div>
 
-            </Layout.Content>
-
-        
-        </Layout>
-    )
-}
-
-export default Content;
+            </Layout.Content> */}

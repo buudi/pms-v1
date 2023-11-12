@@ -9,14 +9,15 @@ const Root = () => {
     const [colorMode, setColorMode] = useState("light");
   return (
     <ConfigProvider direction="rtl">
-      <Layout
-      style={{
-        minHeight: '100vh',
-      }} 
-    >
-      <Sidebar colorMode={colorMode} />
-        <Outlet />
-    </Layout>
+        <Layout hasSider
+        style={{
+            minHeight: '100vh',
+        }} 
+        >
+            <Sidebar colorMode={colorMode} />
+            <Outlet />
+            {/* <Content /> */}
+        </Layout>
     </ConfigProvider>
   );
 }
