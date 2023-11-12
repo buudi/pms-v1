@@ -2,21 +2,19 @@ import { useState } from "react";
 import { Layout, ConfigProvider} from "antd";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar"
-import Content from "./Content";
-
 
 const Root = () => {
-    const [colorMode, setColorMode] = useState("light");
+  const [colorMode, setColorMode] = useState("light");
+  const [directionMode, setDirectionMode] = useState("rtl");
   return (
-    <ConfigProvider direction="rtl">
+    <ConfigProvider direction={directionMode}>
         <Layout hasSider
-        style={{
-            minHeight: '100vh',
-        }} 
+          style={{
+              minHeight: '100vh',
+          }} 
         >
-            <Sidebar colorMode={colorMode} />
-            <Outlet />
-            {/* <Content /> */}
+            <Sidebar colorMode={colorMode} directionMode={[directionMode, setDirectionMode]} />
+            <Outlet context={directionMode}/>
         </Layout>
     </ConfigProvider>
   );
