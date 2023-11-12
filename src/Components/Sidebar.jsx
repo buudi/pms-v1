@@ -35,13 +35,7 @@ function getItem(label, key, icon, children) {
       key: '1',
       icon: <PieChartOutlined  />
     },
-    getItem('second Item', '2', <DesktopOutlined />),
-    getItem('User', 'sub1', <UserOutlined />, [
-      getItem('Tom', '3'),
-      getItem('Bill', '4'),
-      getItem('Alex', '5'),
-    ]),
-    getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
+    getItem('Users', '2', <DesktopOutlined />),
     getItem('Switch Language', '9'),
 
   ];
@@ -55,22 +49,6 @@ const Sidebar = (props) => {
     setDirectionMode(directionMode === 'rtl' ? 'ltr' : 'rtl');
     console.log('invoked');
   };
-
-  // const onClick = (e) =>{
-  //   if(e.key === '1'){
-  //     setSelectedMenuItem('1');
-  //     navigate('/');
-  //   } else if (e.key === '2') {
-  //     setSelectedMenuItem('2');
-  //     navigate('/2');
-  //   } else if (e.key === '9'){
-  //     if (directionMode === 'rtl'){
-  //       setDirectionMode('ltr')
-  //     } else {
-  //       setDirectionMode('rtl')
-  //     }
-  //   }
-  // }
 
   const handleMenuClick = (e) => {
     setSelectedMenuItem(e);

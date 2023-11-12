@@ -20,26 +20,24 @@ const Content = () => {
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-width: 1224px)'
   });
+  let layoutStyle = {};
 
-  if (isDesktopOrLaptop && directionMode === 'rtl'){
-    return (
-      <Layout style={{marginRight: 200}} >
-        <LayoutContent />
-      </Layout>
-    )
-  } else if (isDesktopOrLaptop && directionMode === 'ltr') {
-      return (
-        <Layout style={{marginLeft: 200}} >
-          <LayoutContent />
-        </Layout>
-      )
-  } else {
-    return (
-        <Layout>
-          <LayoutContent />
-        </Layout>
-    )
+  switch (true) {
+    case isDesktopOrLaptop && directionMode === 'rtl':
+      layoutStyle = { marginRight: 200 };
+      break;
+    case isDesktopOrLaptop && directionMode === 'ltr':
+      layoutStyle = { marginLeft: 200 };
+      break;
+    default:
+      layoutStyle = {};
   }
+
+  return (
+    <Layout style={layoutStyle}>
+      <LayoutContent />
+    </Layout>
+  );
 }
 
 export default Content;
