@@ -4,11 +4,16 @@ import { useDirectionMode } from "../contexts/DirectionModeContext";
 import { useColorMode } from "../contexts/ColorModeContext";
 import { useMediaQuery } from 'react-responsive'
 
+const darkModeTheme = { primary: '#283747', secondary: "#34495E"};
+
 const LayoutContent = ({ directionMode, isDesktopOrLaptop, colorMode }) => {
+
+  
+
   const titleStyles = isDesktopOrLaptop ?  {margin:'32px 0 32px 0'} : {margin:'0 0 32px 0'};
   const titleColorStyles = colorMode === 'dark' && { color: 'white' };
-  const contentStyles = colorMode === 'dark' && {background:'#5D6D7E', color:'white'}; 
-  const footerStyles = colorMode === 'dark'&& {background:'#273746', color:'white'};
+  const contentStyles = colorMode === 'dark' && {background: darkModeTheme.secondary, color:'white'}; 
+  const footerStyles = colorMode === 'dark'&& {background:'#12161C', color:'white'};
   return (
       <>
         {/* <Layout.Header style={{ padding:0, background: 'white' }} >
@@ -23,7 +28,7 @@ const LayoutContent = ({ directionMode, isDesktopOrLaptop, colorMode }) => {
         </Layout.Content>
         <Layout.Footer style={{ textAlign: 'center', ...footerStyles }}>
         {directionMode==='rtl' && "نظام ادارة العقارات, الجزيرة العربية للعقارات ©2023"}
-        {directionMode==='ltr' && "Property Management System, Aljazeera Alarabia Real Estates ©2023 "}
+        {directionMode==='ltr' && "Property Management System, Aljazeera Alarabia Real ©2023 "}
 
         </Layout.Footer>
       </>
@@ -49,7 +54,7 @@ const Content = () => {
       layoutStyle = {};
   }
 
-  const themeStyle = colorMode === 'light' ? { background:"#F8F9F9" } : { background:"#2E4053" };
+  const themeStyle = colorMode === 'light' ? { background:"#F8F9F9" } : { background: darkModeTheme.primary };
   return (
     <Layout style={{ ...themeStyle, ...layoutStyle}}>
       <LayoutContent directionMode={directionMode} isDesktopOrLaptop={isDesktopOrLaptop} colorMode={colorMode} />

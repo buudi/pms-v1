@@ -49,7 +49,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const handleMenuClick = (e) => {
-    setSelectedMenuItem(e);
+    
     // console.log(e);
     const routeMap = {
       '1': '/',
@@ -62,6 +62,8 @@ const Sidebar = () => {
       if (typeof route === 'function') {
         route(); // Call the function here
       } else {
+        setSelectedMenuItem(e.key);
+        console.log(e.key);
         navigate(route);
       }
   }
@@ -83,7 +85,7 @@ const Sidebar = () => {
       <Flex justify="center">
           <Image preview={false} height={'100px'} src="https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg" />
       </Flex>
-          <Menu onClick={handleMenuClick} theme={colorMode} defaultSelectedKeys={[selectedMenuItem]} mode="inline" items={menuItems} />          
+          <Menu onClick={handleMenuClick} theme={colorMode} selectedKeys={[selectedMenuItem]} defaultSelectedKeys={[selectedMenuItem]} mode="inline" items={menuItems} />          
       </Layout.Sider>
     );
 };
