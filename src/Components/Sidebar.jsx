@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDirectionMode } from "../contexts/DirectionModeContext";
 import { useColorMode } from "../contexts/ColorModeContext";
-import { Menu, Layout, Image, Flex } from "antd";
+import { Menu, Layout, Image, Flex, Switch } from "antd";
 import { useNavigate } from "react-router-dom"
 
 import {
@@ -20,11 +20,11 @@ function getItem(label, key, icon, children) {
   }
   const arabicItems = [
     {
-      label: 'Content Page',
+      label: 'لوحة التحكم',
       key: '1',
       icon: <PieChartOutlined  />
     },
-    getItem('المستخدمين', '2', <DesktopOutlined />),
+    getItem('المستخدمون', '2', <DesktopOutlined />),
     getItem('تغيير اللون', '3'),
     getItem('تغيير اللغة', '9'),
 
@@ -32,7 +32,7 @@ function getItem(label, key, icon, children) {
   
   const englishItems = [
     {
-      label: 'Content Page',
+      label: 'Dashboard',
       key: '1',
       icon: <PieChartOutlined  />
     },
@@ -53,7 +53,7 @@ const Sidebar = () => {
     // console.log(e);
     const routeMap = {
       '1': '/',
-      '2': '/2',
+      '2': '/users',
       '3': toggleColorMode,
       '9': toggleDirectionMode,
     };
@@ -73,20 +73,23 @@ const Sidebar = () => {
 
   return (
       <Layout.Sider
-          theme={colorMode}
-          breakpoint="lg"
-          collapsedWidth="0"
-          style={{
-              // overflow: 'auto',
-              height:"100vh", 
-              position: "fixed",
-          }}  
-      >
-      <Flex justify="center">
-          <Image preview={false} height={'100px'} src="https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg" />
-      </Flex>
-          <Menu onClick={handleMenuClick} theme={colorMode} selectedKeys={[selectedMenuItem]} defaultSelectedKeys={[selectedMenuItem]} mode="inline" items={menuItems} />          
-      </Layout.Sider>
+        theme={colorMode}
+        breakpoint="lg"
+        collapsedWidth="0"
+        style={{
+            // overflow: 'auto',
+            height:"100vh", 
+            position: "fixed",
+        }}  
+    >
+    <Flex justify="center">
+        <Image preview={false} height={'100px'} src="https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg" />
+    </Flex>
+        <Menu style={{marginTop: '10px'}} onClick={handleMenuClick} theme={colorMode} selectedKeys={[selectedMenuItem]} defaultSelectedKeys={[selectedMenuItem]} mode="inline" items={menuItems} />
+        <Switch checkedChildren="Dark Mode" unCheckedChildren="Toggle Dark" onChange={toggleColorMode} />
+        <Switch style={{marginTop:"10px"}} checkedChildren="LTR" unCheckedChildren="Toggle LTR (English)" onChange={toggleDirectionMode} />         
+
+    </Layout.Sider>
     );
 };
 
