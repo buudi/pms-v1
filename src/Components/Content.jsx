@@ -6,7 +6,7 @@ import { useMediaQuery } from 'react-responsive'
 const LayoutContent = () => {
   return (
       <>
-        <Layout.Header style={{padding:0, background: 'white' }} >
+        <Layout.Header  style={{padding:0, background: 'white' }} >
           <Typography.Title>
             Page Title
           </Typography.Title>

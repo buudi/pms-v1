@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDirectionMode } from "../contexts/DirectionModeContext";
+import { useColorMode } from "../contexts/ColorModeContext";
 import { Menu, Layout, Image, Flex } from "antd";
 import { useNavigate } from "react-router-dom"
 
@@ -24,6 +25,7 @@ function getItem(label, key, icon, children) {
       icon: <PieChartOutlined  />
     },
     getItem('المستخدمين', '2', <DesktopOutlined />),
+    getItem('تغيير اللون', '3'),
     getItem('تغيير اللغة', '9'),
 
   ];
@@ -35,13 +37,15 @@ function getItem(label, key, icon, children) {
       icon: <PieChartOutlined  />
     },
     getItem('Users', '2', <DesktopOutlined />),
+    getItem('Switch Color Mode', '3'),
     getItem('Switch Language', '9'),
 
   ];
 
-const Sidebar = (props) => {
+const Sidebar = () => {
   const [selectedMenuItem, setSelectedMenuItem] = useState('1');
   const { directionMode, toggleDirectionMode } = useDirectionMode();
+  const { colorMode, toggleColorMode } = useColorMode();
   const navigate = useNavigate();
 
   const handleMenuClick = (e) => {
@@ -50,6 +54,7 @@ const Sidebar = (props) => {
     const routeMap = {
       '1': '/',
       '2': '/2',
+      '3': toggleColorMode,
       '9': toggleDirectionMode,
     };
     const route = routeMap[e.key];
@@ -66,7 +71,7 @@ const Sidebar = (props) => {
 
   return (
       <Layout.Sider
-          theme={props.colorMode}
+          theme={colorMode}
           breakpoint="lg"
           collapsedWidth="0"
           style={{
@@ -78,7 +83,7 @@ const Sidebar = (props) => {
       <Flex justify="center">
           <Image preview={false} height={'100px'} src="https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg" />
       </Flex>
-          <Menu onClick={handleMenuClick} theme={props.colorMode} defaultSelectedKeys={[selectedMenuItem]} mode="inline" items={menuItems} />          
+          <Menu onClick={handleMenuClick} theme={colorMode} defaultSelectedKeys={[selectedMenuItem]} mode="inline" items={menuItems} />          
       </Layout.Sider>
     );
 };
