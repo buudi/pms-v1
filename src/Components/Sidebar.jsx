@@ -20,7 +20,7 @@ function getItem(label, key, icon, children) {
   }
   const arabicItems = [
     {
-      label: 'لوحة التحكم',
+      label: 'Content Page',
       key: '1',
       icon: <PieChartOutlined  />
     },
@@ -32,7 +32,7 @@ function getItem(label, key, icon, children) {
   
   const englishItems = [
     {
-      label: 'Dashboard',
+      label: 'Content Page',
       key: '1',
       icon: <PieChartOutlined  />
     },
@@ -50,7 +50,7 @@ const Sidebar = () => {
 
   const handleMenuClick = (e) => {
     setSelectedMenuItem(e);
-    console.log(e);
+    // console.log(e);
     const routeMap = {
       '1': '/',
       '2': '/2',

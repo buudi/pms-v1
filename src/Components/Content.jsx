@@ -1,26 +1,38 @@
 import React from 'react';
 import { Layout, Typography } from 'antd';
 import { useDirectionMode } from "../contexts/DirectionModeContext";
+import { useColorMode } from "../contexts/ColorModeContext";
 import { useMediaQuery } from 'react-responsive'
 
-const LayoutContent = () => {
+const LayoutContent = ({ directionMode, isDesktopOrLaptop, colorMode }) => {
+  const titleStyles = isDesktopOrLaptop ?  {margin:'32px 0 32px 0'} : {margin:'0 0 32px 0'};
+  const titleColorStyles = colorMode === 'dark' && { color: 'white' };
+  const contentStyles = colorMode === 'dark' && {background:'#5D6D7E', color:'white'}; 
+  const footerStyles = colorMode === 'dark'&& {background:'#273746', color:'white'};
   return (
       <>
-        <Layout.Header  style={{padding:0, background: 'white' }} >
-          <Typography.Title>
-            Page Title
+        {/* <Layout.Header style={{ padding:0, background: 'white' }} >
+          
+        </Layout.Header> */}
+        <Layout.Content style={{ margin: '20px 16px 0'}}>
+        <Typography.Title style={{ ...titleStyles, ...titleColorStyles }}>
+            {directionMode==='rtl' && "عنوان الصفحة"}
+            {directionMode==='ltr' && "Page Title"} 
           </Typography.Title>
-        </Layout.Header>
-        <Layout.Content style={{ margin: '24px 16px 0' }}>
-          <div style={{ padding: 24, minHeight: 'auto', background: 'white' }}>content <br /> content <br /> content</div>
+          <div style={{ padding: 24, minHeight: '80vh', background:'white', ...contentStyles }}>content <br /> content <br /> content</div>
         </Layout.Content>
-        <Layout.Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Layout.Footer>
+        <Layout.Footer style={{ textAlign: 'center', ...footerStyles }}>
+        {directionMode==='rtl' && "نظام ادارة العقارات, الجزيرة العربية للعقارات ©2023"}
+        {directionMode==='ltr' && "Property Management System, Aljazeera Alarabia Real Estates ©2023 "}
+
+        </Layout.Footer>
       </>
   );
 }
 
 const Content = () => {
   const { directionMode } = useDirectionMode();
+  const { colorMode } = useColorMode();
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-width: 1224px)'
   });
@@ -37,9 +49,10 @@ const Content = () => {
       layoutStyle = {};
   }
 
+  const themeStyle = colorMode === 'light' ? { background:"#F8F9F9" } : { background:"#2E4053" };
   return (
-    <Layout style={layoutStyle}>
-      <LayoutContent />
+    <Layout style={{ ...themeStyle, ...layoutStyle}}>
+      <LayoutContent directionMode={directionMode} isDesktopOrLaptop={isDesktopOrLaptop} colorMode={colorMode} />
     </Layout>
   );
 
