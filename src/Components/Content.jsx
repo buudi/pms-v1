@@ -8,7 +8,7 @@ const LayoutContent = () => {
       <>
         <Layout.Header style={{ padding: 0, background: 'white' }} />
         <Layout.Content style={{ margin: '24px 16px 0' }}>
-          <div style={{ padding: 24, minHeight: 360, background: 'white' }}>content</div>
+          <div style={{ padding: 24, minHeight: 'auto', background: 'white' }}>content <br /> content <br /> content</div>
         </Layout.Content>
         <Layout.Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Layout.Footer>
       </>
@@ -38,6 +38,7 @@ const Content = () => {
       <LayoutContent />
     </Layout>
   );
+
 }
 
 export default Content;
