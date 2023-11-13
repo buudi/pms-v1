@@ -1,22 +1,32 @@
 import { useState } from "react";
 import { Layout, ConfigProvider} from "antd";
 import { Outlet } from "react-router-dom";
+import { DirectionModeProvider, useDirectionMode } from "../contexts/DirectionModeContext";
 import Sidebar from "./Sidebar"
 
-const Root = () => {
+const RootContent = () => {
   const [colorMode, setColorMode] = useState("light");
-  const [directionMode, setDirectionMode] = useState("rtl");
+  const { directionMode } = useDirectionMode();
+
   return (
     <ConfigProvider direction={directionMode}>
-        <Layout hasSider
-          style={{
-              minHeight: '100vh',
-          }} 
-        >
-            <Sidebar colorMode={colorMode} directionMode={[directionMode, setDirectionMode]} />
-            <Outlet context={directionMode}/>
-        </Layout>
-    </ConfigProvider>
+          <Layout hasSider
+            style={{
+                minHeight: '100vh',
+            }} 
+          >
+              <Sidebar colorMode={colorMode}/>
+              <Outlet context={directionMode}/>
+          </Layout>
+      </ConfigProvider>
+  );
+}
+
+const Root = () => {
+  return (
+    <DirectionModeProvider>
+      <RootContent />
+    </DirectionModeProvider>
   );
 }
 

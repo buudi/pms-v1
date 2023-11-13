@@ -1,12 +1,11 @@
 import { useState } from "react";
+import { useDirectionMode } from "../contexts/DirectionModeContext";
 import { Menu, Layout, Image, Flex } from "antd";
 import { useNavigate } from "react-router-dom"
 
 import {
     DesktopOutlined,
     PieChartOutlined,
-    TeamOutlined,
-    UserOutlined,
   } from '@ant-design/icons';
   
   
@@ -42,13 +41,8 @@ function getItem(label, key, icon, children) {
 
 const Sidebar = (props) => {
   const [selectedMenuItem, setSelectedMenuItem] = useState('1');
-  const [directionMode, setDirectionMode] = props.directionMode;
+  const { directionMode, toggleDirectionMode } = useDirectionMode();
   const navigate = useNavigate();
-
-  const toggleDirectionMode = () => {
-    setDirectionMode(directionMode === 'rtl' ? 'ltr' : 'rtl');
-    console.log('invoked');
-  };
 
   const handleMenuClick = (e) => {
     setSelectedMenuItem(e);
